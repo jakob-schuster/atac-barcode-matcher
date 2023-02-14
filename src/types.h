@@ -14,6 +14,8 @@ struct TotalResult
 
 namespace base
 {
+    // a base is one character
+    // (because it would be expensive to re-implement it as an enum)
     using Base = char;
 }
 

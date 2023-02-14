@@ -49,7 +49,6 @@ namespace barcode
 
         for (const auto & barcode : barcodes) {
             auto barcode_result = seq::align(seq, barcode, edit_dist_proportion);
-            // auto barcode_found = seq::contains_match(seq, barcode, seq.size(), 0.1);
             if (barcode_result.dist != -1) {
                 if (!result.found) {
                     result.found = true;

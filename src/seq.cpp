@@ -144,8 +144,10 @@ namespace seq
     }
 
     /*
-        determines whether a fuzzy match of key is present in the first searchSize characters of seq,
+        determines whether a fuzzy match of key is present in the first search_size characters of seq,
         using a simple implementation of Ukkonen
+
+        DEPRECATED: NO LONGER USED because we align using edlib instead
     */
     bool
     contains_match(const Seq &seq, const Seq &key, const int search_size, const double &edit_dist_proportion)
