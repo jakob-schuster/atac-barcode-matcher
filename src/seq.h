@@ -9,9 +9,9 @@
 namespace seq
 {
     // store the adapter and spacer sequences
-    const Seq adapter = "ACCGAGATCTACAC";
+    const Seq adapter = "AATGATACGGCGACCACCGAGATCTACAC";
     const Seq spacer  = "CGCGTCTG";
-    const Seq adapter_rev_comp = "GTGTAGATCTCGGT";
+    const Seq adapter_rev_comp = "GTGTAGATCTCGGTGGTCGCCGTATCATT";
     const Seq spacer_rev_comp  = "CAGACGCG";
 
     struct AdapterSpacer
