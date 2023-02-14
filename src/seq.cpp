@@ -80,7 +80,7 @@ namespace seq
         auto seq_remaining = strand == '+' ?
             seq.substr(adapter_result.end, seq.size() - adapter_result.end) :
             seq.substr(0, adapter_result.start);
-        seq_remaining = seq;
+        std::cout << "seq remaining is " << seq << "\n";
 
         // find the spacer
         auto spacer_result = align(seq_remaining, spacer, edit_dist_proportion);
@@ -89,15 +89,20 @@ namespace seq
         
         total.spacer = true;
 
-        std::cout << "\tspacer at " << adapter_result.start + spacer_result.start << "\n";
+        auto spacer_location = strand == '+' ?
+            adapter_result.start + spacer_result.start :
+            spacer_result.start;
+        std::cout << "\tspacer at " << spacer_location << " to " << spacer_result.end << "\n";
+        std::cout << "\tbarcode subseq is from " << spacer_result.end << " to " << seq_remaining.size() - spacer_result.end << "\n";
 
         // cut down the sequence again
         seq_remaining = strand == '+' ?
             seq_remaining.substr(0, spacer_result.start) :
             seq_remaining.substr(spacer_result.end, seq_remaining.size() - spacer_result.end);
-        seq_remaining = seq;
         
         std::cout << "\tbarcode subseq is " << seq_remaining.size() << "\n";
+        std::cout << "seq remaining is " << seq_remaining << "\n";
+
         // check that there's the right amount of sequence left
         if (abs((int)(seq_remaining.size() - barcode::length)) > 2)
             return total;
@@ -114,7 +119,7 @@ namespace seq
 
         return total;
     }
-    
+
     
     struct AdapterSpacer
     align_adapter_spacer(const Seq& seq, const char strand, const double edit_dist_proportion) 
