@@ -14,7 +14,6 @@
 #include "base.h"
 #include "seq.h"
 #include "barcode.h"
-#include "Counter.h"
 
 void
 read_line(
@@ -71,20 +70,16 @@ main(int argc, char *argv[]) {
     char plus       [length];
     char quality    [length];
 
-    int records = -1;
-    int adapters = 0;
-    int adapters_rev = 0;
-    int spacers = 0;
-    int spacers_rev = 0;
-    int barcodes_count = 0;
-    std::unordered_map<barcode::Barcode, int> barcode_counts = {};
-
+    int adapter = 0;
     int adapter_spacer = 0;
-    int spacer_adapter = 0;
+    int adapter_barcode_spacer = 0;
 
-    Counter counter ();
+    int adapter_rev = 0;
+    int spacer_adapter_rev = 0;
+    int spacer_barcode_adapter_rev = 0;
 
-    
+    int records = -1;
+    std::unordered_map<barcode::Barcode, int> barcode_counts = {};
 
     while (true) {
         std::cout << "record " << records << "\n";
@@ -109,8 +104,25 @@ main(int argc, char *argv[]) {
         auto align_forward = seq::align_strand(seq, barcodes, '+', edit_dist_proportion);
         auto align_reverse = seq::align_strand(seq, barcodes, '-', edit_dist_proportion);
         
+
+        if (align_forward.adapter)
+            adapter++;
+        if (align_forward.spacer)
+            adapter_spacer++;
+        if (align_forward.barcode)
+            adapter_barcode_spacer++;
+
+        if (align_reverse.adapter)
+            adapter_rev++;
+        if (align_reverse.spacer)
+            spacer_adapter_rev++;
+        if (align_reverse.barcode)
+            spacer_barcode_adapter_rev++;
+
+/*
         auto adapter_spacer_forward = align_forward.adapter && align_forward.spacer;
         auto adapter_spacer_reverse = align_reverse.adapter && align_reverse.spacer;
+
 
         if (adapter_spacer_forward)
             adapter_spacer++;
@@ -137,13 +149,17 @@ main(int argc, char *argv[]) {
         
         // auto forward = seq::align_simple(seq, alignment_stuff, '+');
         // auto reverse = seq::align_simple(seq, alignment_stuff, '-');
+*/
+
     }
 
     std::cout << "reads: " << records << "\n"
+        << "..  adapter  ................... = " << adapter << "\n" 
         << "..  adapter  .......  spacer  .. = " << adapter_spacer << "\n"
-        << "..  adapter  barcode  spacer  .. = " << barcodes_count << "\n"
-        << ".. -spacer   ....... -adapter .. = " << spacer_adapter << "\n"
-        << ".. -spacer  -barcode -adapter .. = " << barcodes_count << "\n";
+        << "..  adapter  barcode  spacer  .. = " << adapter_barcode_spacer << "\n"
+        << ".................... -adapter .. = " << adapter_rev << "\n"
+        << ".. -spacer   ....... -adapter .. = " << spacer_adapter_rev << "\n"
+        << ".. -spacer  -barcode -adapter .. = " << spacer_barcode_adapter_rev << "\n";
 
     gzclose(input_file);
     gzclose(output_file);
