@@ -114,7 +114,7 @@ namespace seq
 
         return total;
     }
-   
+    
     
     struct AdapterSpacer
     align_adapter_spacer(const Seq& seq, const char strand, const double edit_dist_proportion) 

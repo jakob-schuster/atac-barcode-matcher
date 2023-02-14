@@ -54,7 +54,7 @@ write_line(
 
 int
 main(int argc, char *argv[]) {
-    const double edit_dist_proportion = 0.1;
+    const double edit_dist_proportion = 0.2;
 
     gzFile input_file = gzopen(argv[1], "r");
     gzFile output_file = gzopen(argv[2], "w");
