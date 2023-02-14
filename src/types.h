@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-
 struct TotalResult
 {
     bool adapter;
@@ -31,5 +30,6 @@ namespace barcode
     using Barcode = seq::Seq; 
     using Barcodes = std::vector<Barcode>;
 }
+
 
 #endif

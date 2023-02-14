@@ -1,4 +1,3 @@
-#include "atac_barcode_matcher.h"
 #include "ssw/ssw_cpp.h"
 #include "edlib/include/edlib.h"
 
@@ -15,8 +14,7 @@
 #include "base.h"
 #include "seq.h"
 #include "barcode.h"
-
-
+#include "Counter.h"
 
 void
 read_line(
@@ -83,6 +81,10 @@ main(int argc, char *argv[]) {
 
     int adapter_spacer = 0;
     int spacer_adapter = 0;
+
+    Counter counter ();
+
+    
 
     while (true) {
         std::cout << "record " << records << "\n";
