@@ -5,3 +5,11 @@ For checking the structure of MAT-seq reads. Quantifies the number of reads with
 - spacers
 - adapters and spacers
 - adapters, spacers, and valid barcodes
+
+Usage:
+```
+./atac-barcode-matcher input.fq.gz output.fq.gz barcodes.csv
+```
+- `input.fq.gz` is the input fastq file
+- `output.fq.gz` is currently unused, will be used to collect reads with valid structure
+- `barcodes.csv` is a newline-separated list of barcodes to search for
