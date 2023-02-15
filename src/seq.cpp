@@ -23,6 +23,8 @@ namespace seq
         for (int i = seq.size() - 1; i >= 0; i--) {
             new_seq += base::comp(seq[i]);
         }
+
+        std::cout << "rev comped " << seq << " into " << new_seq << "\n";
         return new_seq;
     }
 
@@ -104,8 +106,8 @@ namespace seq
         std::cout << "seq remaining is " << seq_remaining << "\n";
 
         // check that there's the right amount of sequence left
-        // if (abs((int)(seq_remaining.size() - barcode::length)) > 2)
-        //     return total;
+        if (abs((int)(seq_remaining.size() - barcode::length)) > 2)
+            return total;
         
         // find the barcode
         auto barcode_result = barcode::align(seq, barcodes, edit_dist_proportion);
