@@ -102,7 +102,7 @@ main(int argc, char *argv[]) {
         std::cout << seq << "\n";
 
         auto align_forward = seq::align_strand(seq, barcodes, '+', edit_dist_proportion);
-        auto align_reverse = seq::align_strand(seq, barcodes, '-', edit_dist_proportion);
+        auto align_reverse = seq::align_strand(seq, rev_comp_barcodes, '-', edit_dist_proportion);
         
 
         if (align_forward.adapter)

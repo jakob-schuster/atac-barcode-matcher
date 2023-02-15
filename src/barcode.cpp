@@ -52,7 +52,10 @@ namespace barcode
             if (barcode_result.dist != -1) {
                 if (!result.found) {
                     result.found = true;
-                    result.dist = 0;
+                    result.dist = barcode_result.dist;
+                    result.barcode = barcode;
+                } else if (barcode_result.dist < result.dist) {
+                    result.dist = barcode_result.dist;
                     result.barcode = barcode;
                 }
             }
