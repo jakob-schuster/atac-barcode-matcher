@@ -37,5 +37,4 @@ namespace seq
     align_strand(const Seq& seq, const barcode::Barcodes& barcodes, const char strand, const double edit_dist_proportion);
 }
 
-
 #endif
