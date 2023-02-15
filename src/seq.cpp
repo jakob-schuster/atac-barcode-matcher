@@ -104,8 +104,8 @@ namespace seq
         std::cout << "seq remaining is " << seq_remaining << "\n";
 
         // check that there's the right amount of sequence left
-        if (abs((int)(seq_remaining.size() - barcode::length)) > 2)
-            return total;
+        // if (abs((int)(seq_remaining.size() - barcode::length)) > 2)
+        //     return total;
         
         // find the barcode
         auto barcode_result = barcode::align(seq, barcodes, edit_dist_proportion);
