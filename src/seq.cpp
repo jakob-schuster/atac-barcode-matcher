@@ -24,7 +24,6 @@ namespace seq
             new_seq += base::comp(seq[i]);
         }
 
-        std::cout << "rev comped " << seq << " into " << new_seq << "\n";
         return new_seq;
     }
 
@@ -85,7 +84,7 @@ namespace seq
         std::cout << "seq remaining is " << seq << "\n";
 
         // find the spacer
-        auto spacer_result = align(seq_remaining, spacer, edit_dist_proportion);
+        auto spacer_result = align(seq_remaining, current_spacer, edit_dist_proportion);
         if (!spacer_result.found)
             return total;
         
